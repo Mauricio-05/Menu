@@ -1,0 +1,28 @@
+﻿@model List<Menu.Models.Dish>
+@{
+    ViewData["Title"] = "MenuIndex";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach(var item in Model)
+        {
+            <div class="col-6">
+                <div class="d-flex justify-content-center">
+                    <h4>@item.Name</h4>
+                </div>
+                 <div class="d-flex justify-content-center">
+                    <img alt="Dish the food" src="@(string.IsNullOrEmpty(item.ImageUrl) ?
+                    "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
+                    : item.ImageUrl )" style="width: 70%" />
+                </div>
+                <div class="d-flex justify-content-center">
+                    @item.Price.ToString("N2") Dollars
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">View Dish</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
